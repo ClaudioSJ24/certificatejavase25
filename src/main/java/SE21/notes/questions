@@ -1,0 +1,134 @@
+A JDBC driver implementation must provide implementation classes for which of the following interfaces?
+    java.sql.Driver
+    java.sql.ResultSet
+    java.sql.PreparedStatement
+
+Select three correct sentences:
+    List<?> cads=new ArrayList<String>();
+    List<? extends Number> nums=new ArrayList<>();
+    List<Object> obs=List.of(4,6,1);
+
+Given this requirement:
+Module Planet has two packages: com.satelite and com.composition, but only the second package must be accesible to other modules.
+Also, Module Planet uses package com.properties which is defined in module System
+Which module-info.java declaration for module Planet meets the requirement?
+    module Planet{
+       exports com.composition;
+       requires System;
+    }
+        Un módulo debe exportar solo sus paquetes que deben ser accesibles al exterior y requerir los módulos externos a los que necesite acceder,
+        sin indicar que paquetes de esos módulos utilizará.
+
+Identify valid statements (choose 3)
+    Locale l=Locale.getDefault();
+    Locale l=Locale.getDefault(Locale.Category.DISPLAY);
+    Locale l=new Locale("en","US");
+
+Select the correct creation of Date/Time objects (choose 3)
+    LocalDateTime ldt=LocalDateTime.parse("2027-11-23T18:15:10");
+    LocalDate ld=LocalDate.of(2020,03,11);
+    ZonedDateTime zdt=ZonedDateTime.of(LocalDateTime.now(), ZoneId.of("US/Eastern"));
+
+Which of the following is a correct implementation of Function<String, Integer> interface? (choose 2)
+    "hello"::compareTo
+    (a)->a.length()
+        En esta implementación de la interfaz Function, el tipo del parámetro es String y el tipo de devolución Integer.
+        Por tanto, (a,b)->a.toString() es incorrecta porque declara dos parámetros.
+        (a)->a.length() es correcta porque coincide con el tipo del parámetro y el de devolución.
+        "hello"::compareTo también es correcta porque la llamada a compareTo se aplicaría al parámetro y el tipo de devolución es int.
+
+Which of the following are a valid functional interfaces (choose 3)
+    public interface F5{
+      void met(int r);
+      private void go(){}
+    }
+    public interface F2{
+       void m1();
+       static int m(){return 1;}
+    }
+    public interface FI{
+       int m1();
+       boolean equals(Object o);
+    }
+
+Which of the following sentences creates a ExecutorService using a variable amount of threads
+     var service=Executors.newCachedThreadPool();
+        El método newCachedThreadPool de Executors (ExecutorService no dispone de métodos estáticos para la creación de instancias de dicho tipo)
+        crea un pool de threads en el que se van añadiendo nuevos thread según se vayan necesitando
+
+Which of the following are valid implementations of java.util.Comparator? (choose 2)
+    var cin = new Comparator<Double>(){
+                public int compare(Double i1, Double i2){
+                       return i1.compareTo(i2);
+                }
+    };
+    Comparator<Double> cin = new Comparator<Double>(){
+                public int compare(Double i1, Double i2){
+                       return i1.intValue() - i2.intValue();
+                }
+    };
+
+         El método a implementar de la interfaz Comparator es compare(), el cual debe devolver un int.
+
+Which two are valid statements?(Choose two.)
+    BiConsumer<Integer,String> bc=(var a, var b)->System.out.println(a*Integer.parseInt(b));
+    BiConsumer<Integer,String> bc=(final var a,var b)->System.out.println(a+b);
+
+
+Which two statements are correct about try blocks?
+    A try block can have more than one catch block
+    In a try with resources the resources declared are closed in inverse order they are declared
+        A continuación de un bloque try se pueden indicar tantos catch como se desee.
+        Si se crea más de un objeto cerrable en un try con recursos, estos serán cerrados al abandonar el try en orden inverso al que han sido creados
+
+Si se define un parámetro en el constructor de la enumeración, todos los elementos de la misma deben tener asociado un valor para el mismo.
+Además, los constructores de una enumeración no pueden ser públicos
+
+Una sealed interface puede heredar otras interfaces e incluir en su interior la definición de otras interfaces.
+Un record puede implementar una interfaz y como por defecto es final, puede formar parte de elementos permitidos en una sealed interface.
+Si una clase se define como sealed, debe definir la lista de clases/interfaces permitidas.
+Si la sealed interfaz Plane solo tuviera permitida la interfaz Oval, dado que está anidada, podría omitir la lista de interfaces permitidas.
+Sin embargo, como hay otras interfaces/clases en la lista, es obligatorio que aparezcan todas, incluso las que están anidadas
+
+What is true about sealed class? (choose two)
+    Only permited classes can extends a sealed class
+    Sealed classes can be abstract
+        Unicamente las clases permitidas pueden extender una sealed class.
+        Las sealed class pueden heredar otras clases y no hay ningún motivo por el que estén obligadas a tener constructores sin o con parámetros.
+        Pueden ser abstractas y no hay ningún motivo por el que una sealed interface no pueda tener un único método abstracto y ser funcional
+
+Which two statements are true about Virtual threads?(choose 2)
+    Virtual Threads can't be configured as a daemon Thread
+        Explanation
+        Es correcta porque un Virtual Thread no puede configurarse como daemon,
+        ya que para ello tendría que estar asociado a un determinado Platform Thread.
+
+    Virtual Threads can be launched with an ExecutorService
+        Explanation
+        Es correcta porque si creamos un ExecutorService mediante el método newVirtualThreadPerTaskExecutor() de Executors,
+        tanto los Runnable y Callable que se lancen correrán como Virtual Thread
+
+Which statement is true?
+    The tryLock() method return a boolean indicator immediately regardless of whether it has or not has managed to acquire the lock
+        Overall explanation
+        El método lock ()es void, luego las respuestas primera y tercera son falsas.
+        El método tryLock() devuelve un boolean que indica si se ha adquirido o no el bloqueo,
+        pero continua adelante en cualquier caso sin quedarse a la espera, por lo que la última es la opción correcta
+
+Which of the following statements about modularity are correct? (choose 3)
+    An automatic module exports all packages to all modules
+        Explanation
+        Al no disponer de module-info, por defecto importa todos sus paquetes al resto de módulos
+
+    To require an automatic module from a modular application, it must be on the module path
+        para que sea un módulo automático debe incluirse en el module-path
+
+    If the module-info file is empty, the module doesn't exports any packages
+        Para que los paquetes de un módulo sean visibles desde fuera, es necesario exportarlos explícitamente en el module-info.
+        Salvo que se trate de un módulo anónimo, que al no tener module-info se exportan todos los paquetes implícitamente.
+
+Which statement is true about thread life cycle?
+    The Thread.interrupt() method doesn´t change the state of a thread
+        Overall explanation
+        Si un thread está en ejecución, la llamada a interrupt()  insta a que el thread se detenga, pero no significa que eso suceda inmediatamente,
+        por lo que no cambia su estado de forma inmediata. Si el thread está bloqueado o en espera se producirá una excepción
